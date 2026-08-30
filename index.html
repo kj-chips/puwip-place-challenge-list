@@ -154,23 +154,4 @@
         window.addEventListener('click', () => document.getElementById('themeMenu').classList.remove('open'));
     </script>
 </body>
-</html>fn score_at_position(position: i16) -> f64 {
-    if position > 150 {
-        return 0.0; // Legacy List levels give 0 points
-    }
-    
-    let pos = position as f64;
-    
-    // Piecewise curves mapping position to its specific point weight
-    if position <= 55 {
-        250.0 - 200.0 * (((pos - 1.0) / 54.0).powf(0.5))
-    } else if position <= 100 {
-        50.0 - 30.0 * (((pos - 55.0) / 45.0).powf(0.5))
-    } else {
-        20.0 - 10.0 * (((pos - 100.0) / 50.0).powf(0.5))
-    }
-}
-
-
-
-
+</html>
