@@ -115,12 +115,12 @@
         </div>
     </div>    <script>
         const levelDatabase = {
-            1: { title: "Your First Challenge", creator: "Creator Name", verifier: "Verifier Name", videoID: "dQw4w9WgXcQ", points: "100", idNum: "00000000", password: "Free to Copy", enjoyment: "10/10", song: "Song Name Here", records: [ {p: "PlayerOne 🇺🇸", f: "360FPS"} ] },
-            2: { title: "Your Second Challenge", creator: "Another Creator", verifier: "Another Verifier", videoID: "dQw4w9WgXcQ", points: "50", idNum: "11111111", password: "No Copy", enjoyment: "5/10", song: "Another Song", records: [ {p: "PlayerTwo 🇺🇸", f: "144FPS"} ] }
+            1: { title: "Puwip challenge", creator: "Spacewaveslevel", verifier: "Open verification", videoID: "dQw4w9WgXcQ", points: "100", idNum: "00000000", password: "Free to Copy", enjoyment: "4/10", song: "Stereo madness", records: [ {p: "None",} ] },
+            2: { title: "Puwip challenge", creator: "Another Creator", verifier: "Another Verifier", videoID: "dQw4w9WgXcQ", points: "50", idNum: "11111111", password: "Free to Copy", enjoyment: "5.5/10", song: "When You Find Me", records: [ {p: "Puwip", f: "22%" f: "144FPS"} ] }
         };
         const playerDatabase = {
-            1: { name: "PlayerOne", totalPoints: "100 Points", completedCount: "1 Level", completions: [ { name: "Your First Challenge", points: "100 Points" } ] },
-            2: { name: "PlayerTwo", totalPoints: "50 Points", completedCount: "1 Level", completions: [ { name: "Your Second Challenge", points: "50 Points" } ] }
+            1: { name: "Puwip", totalPoints: "23 Points", completedCount: "0 Level", completions: [ { name: "(23%) Puwip challenge", points: "23 Points" } ] },
+            2: { name: "Player", totalPoints: "0 Points", completedCount: "-1 Level", completions: [ { name: "Level", points: "0 Points" } ] }
         };
         function loadLevelData(id) {
             const d = levelDatabase[id]; if (!d) return;
