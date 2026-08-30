@@ -22,21 +22,45 @@
             text-align: center;
             color: #888;
             font-size: 14px;
-            margin-bottom: 30px;
-        }
-        .section-title {
-            color: #66fcf1;
-            font-size: 20px;
-            border-bottom: 2px solid #1f2833;
-            padding-bottom: 8px;
-            margin-top: 40px;
             margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        }
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tab-btn {
+            flex: 1;
+            background-color: #1f2833;
+            color: #c5c6c7;
+            border: 2px solid #1f2833;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .tab-btn.active {
+            background-color: #0b0c10;
+            color: #66fcf1;
+            border-color: #66fcf1;
         }
         .container {
             max-width: 500px;
             margin: 0 auto;
+        }
+        /* Content Sections */
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
         }
         .level-card {
             background-color: #1f2833;
@@ -66,7 +90,6 @@
             margin-top: 10px;
             font-size: 14px;
         }
-        /* Leaderboard Styling */
         .leaderboard-card {
             background-color: #1f2833;
             display: flex;
@@ -105,48 +128,75 @@
         <h1>Puwip Place Challenge List</h1>
         <div class="subtitle">Official PPCL Rankings & Leaderboards</div>
         
-        <!-- CHALLENGE LIST SECTION -->
-        <div class="section-title">The Challenge List</div>
+        <!-- MENU BUTTONS -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('list')">The List</button>
+            <button class="tab-btn" onclick="switchTab('leaderboard')">Leaderboard</button>
+        </div>
         
-        <!-- LEVEL #1 -->
-        <div class="level-card">
-            <div class="rank">#1</div>
-            <div class="level-name">Type Level Name Here</div>
-            <p>Creator: Type Creator Name <br> ID: 00000000</p>
-            <a href="PUT_YOUTUBE_LINK_HERE" class="video-btn" target="_blank">Watch Video</a>
-        </div>
+        <!-- CHALLENGE LIST SECTION -->
+        <div id="list-section" class="page-section active">
+            <!-- LEVEL #1 -->
+            <div class="level-card">
+                <div class="rank">#1</div>
+                <div class="level-name">Type Level Name Here</div>
+                <p>Creator: Type Creator Name <br> ID: 00000000</p>
+                <a href="PUT_YOUTUBE_LINK_HERE" class="video-btn" target="_blank">Watch Video</a>
+            </div>
 
-        <!-- LEVEL #2 -->
-        <div class="level-card">
-            <div class="rank">#2</div>
-            <div class="level-name">Type Another Level Name</div>
-            <p>Creator: Type Creator Name <br> ID: 00000000</p>
-            <a href="PUT_YOUTUBE_LINK_HERE" class="video-btn" target="_blank">Watch Video</a>
+            <!-- LEVEL #2 -->
+            <div class="level-card">
+                <div class="rank">#2</div>
+                <div class="level-name">Type Another Level Name</div>
+                <p>Creator: Type Creator Name <br> ID: 00000000</p>
+                <a href="PUT_YOUTUBE_LINK_HERE" class="video-btn" target="_blank">Watch Video</a>
+            </div>
         </div>
-
 
         <!-- LEADERBOARD SECTION -->
-        <div class="section-title">Top Players</div>
-
-        <!-- PLAYER #1 -->
-        <div class="leaderboard-card">
-            <div class="player-info">
-                <div class="player-rank">#1</div>
-                <div class="player-name">Player Name Here</div>
+        <div id="leaderboard-section" class="page-section">
+            <!-- PLAYER #1 -->
+            <div class="leaderboard-card">
+                <div class="player-info">
+                    <div class="player-rank">#1</div>
+                    <div class="player-name">Player Name Here</div>
+                </div>
+                <div class="player-points">500 Points</div>
             </div>
-            <div class="player-points">500 Points</div>
-        </div>
 
-        <!-- PLAYER #2 -->
-        <div class="leaderboard-card">
-            <div class="player-info">
-                <div class="player-rank">#2</div>
-                <div class="player-name">Another Player</div>
+            <!-- PLAYER #2 -->
+            <div class="leaderboard-card">
+                <div class="player-info">
+                    <div class="player-rank">#2</div>
+                    <div class="player-name">Another Player</div>
+                </div>
+                <div class="player-points">350 Points</div>
             </div>
-            <div class="player-points">350 Points</div>
         </div>
 
     </div>
+
+    <!-- SCRIPT TO MAKE MENU BUTTONS WORK -->
+    <script>
+        function switchTab(tabName) {
+            // Hide both sections
+            document.getElementById('list-section').classList.remove('active');
+            document.getElementById('leaderboard-section').classList.remove('active');
+            
+            // Remove active style from buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected section and light up the clicked button
+            if(tabName === 'list') {
+                document.getElementById('list-section').classList.add('active');
+                buttons[0].classList.add('active');
+            } else {
+                document.getElementById('leaderboard-section').classList.add('active');
+                buttons[1].classList.add('active');
+            }
+        }
+    </script>
 
 </body>
 </html>
