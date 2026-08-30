@@ -255,6 +255,86 @@
         });
     </script>
 </body>
-</html>
+</html>    <div id="leaderboard-view-section" class="page-section" style="max-width:900px; margin:0 auto;">
+        
+        <!-- LEADERBOARD LEFT SIDEBAR: PLAYER COLUMN -->
+        <div class="list-sidebar" id="lb-sidebar">
+            <div class="sidebar-item active" onclick="loadPlayerData(1)">
+                <span class="sidebar-rank">#1</span>
+                <span>PlayerOne</span>
+            </div>
+            <div class="sidebar-item" onclick="loadPlayerData(2)">
+                <span class="sidebar-rank">#2</span>
+                <span>PlayerTwo</span>
+            </div>
+        </div>
+
+        <!-- LEADERBOARD MAIN WINDOW: PLAYER DETAILS CARD -->
+        <div class="detail-panel" id="lb-detail-panel">
+            <div class="level-header-row">
+                <h2 class="detail-title" id="player-title">PlayerOne</h2>
+            </div>
+            
+            <p class="credits-text"><strong>TOTAL SCORE</strong> <span id="player-total-score">100 Points</span></p>
+            <p class="credits-text"><strong>LEVELS COMPLETED</strong> <span id="player-completed-count">1 Level</span></p>
+
+            <div class="records-section">
+                <div class="records-header">Breakdown of Completions</div>
+                <div id="player-completions-list">
+                    <div class="record-row"><span>Your First Challenge</span><span>100 Points</span></div>
+                </div>
+            </div>
+        </div>
+    </div>        const playerDatabase = {
+            1: {
+                name: "PlayerOne",
+                totalPoints: "100 Points",
+                completedCount: "1 Level",
+                completions: [
+                    { name: "Your First Challenge", points: "100 Points" }
+                ]
+            },
+            2: {
+                name: "PlayerTwo",
+                totalPoints: "50 Points",
+                completedCount: "1 Level",
+                completions: [
+                    { name: "Your Second Challenge", points: "50 Points" }
+                ]
+            }
+        };
+
+        function loadPlayerData(id) {
+            const data = playerDatabase[id];
+            if (!data) return;
+            
+            document.getElementById('player-title').innerText = data.name;
+            document.getElementById('player-total-score').innerText = data.totalPoints;
+            document.getElementById('player-completed-count').innerText = data.completedCount;
+
+            let completionsHTML = "";
+            data.completions.forEach(c => {
+                completionsHTML += `<div class="record-row"><span>${c.name}</span><span>${c.points}</span></div>`;
+            });
+            document.getElementById('player-completions-list').innerHTML = completionsHTML;
+
+            const items = document.querySelectorAll('#lb-sidebar .sidebar-item');
+            items.forEach((item, index) => {
+                item.classList.toggle('active', (index + 1) === id);
+            });
+        }    <div id="leaderboard-view-section" class="page-section" style="max-width:500px; margin:0 auto; flex-direction:column;">
+        <div class="leaderboard-card"><div class="player-info"><div class="player-rank">#1</div><div class="player-name">PlayerOne</div></div><div class="player-points">100 Points</div></div>
+        <div class="leaderboard-card"><div class="player-info"><div class="player-rank">#2</div><div class="player-name">PlayerTwo</div></div><div class="player-points">50 Points</div></div>
+    </div>        const playerDatabase = {
+            1: {
+                name: "PlayerOne",
+                totalPoints: "150 Points",
+                completedCount: "2 Levels",
+                completions: [
+                    { name: "Your First Challenge", points: "100 Points" },
+                    { name: "Your Second Challenge", points: "50 Points" }
+                ]
+            }
+        };
 
 
