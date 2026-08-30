@@ -77,41 +77,47 @@
     <div id="list-view-section" class="page-section active">
         <div class="list-sidebar">
             <div class="sidebar-item active" onclick="loadLevelData(1)">
-                <span class="sidebar-rank">#1</span><span>Your First Challenge</span>
+                <span class="sidebar-rank">#1</span><span>Puwip challenge</span>
             </div>
             <div class="sidebar-item" onclick="loadLevelData(2)">
-                <span class="sidebar-rank">#2</span><span>Your Second Challenge</span>
+                <span class="sidebar-rank">#2</span><span>Puwip challenge</span>
             </div>
         </div>
         <div class="detail-panel">
-            <div class="level-header-row"><h2 class="detail-title" id="lvl-title">Your First Challenge</h2><button class="copy-btn" onclick="copyLevelTitle()">📋</button></div>
-            <p class="credits-text"><strong>CREATOR</strong> <span id="lvl-creator">Creator Name</span></p>
-            <p class="credits-text"><strong>VERIFIER</strong> <span id="lvl-verifier">Verifier Name</span></p>
+            <div class="level-header-row"><h2 class="detail-title" id="lvl-title">Puwip challenge</h2><button class="copy-btn" onclick="copyLevelTitle()">📋</button></div>
+            <p class="credits-text"><strong>CREATOR</strong> <span id="lvl-creator">Spacewaveslevel</span></p>
+            <p class="credits-text"><strong>VERIFIER</strong> <span id="lvl-verifier">???</span></p>
             <div class="video-box"><iframe id="lvl-video" src="https://youtube.com" allowfullscreen></iframe></div>
             <div class="stats-grid">
                 <div><div class="stat-label">Points</div><div class="stat-value" id="lvl-points">100</div></div>
                 <div><div class="stat-label">ID</div><div class="stat-value" id="lvl-id">00000000</div></div>
                 <div><div class="stat-label">Password</div><div class="stat-value" id="lvl-pass">Free to Copy</div></div>
-                <div><div class="stat-label">Enjoyment</div><div class="stat-value" id="lvl-enjoy">10/10</div></div>
+                <div><div class="stat-label">Enjoyment</div><div class="stat-value" id="lvl-enjoy">5.5/10</div></div>
             </div>
-            <div class="song-text">SONG: <span id="lvl-song">Song Name Here</span></div>
-            <div class="records-section"><div class="records-header">Records</div><div id="lvl-records-list"><div class="record-row"><span>100% PlayerOne 🇺🇸</span><span>360FPS</span></div></div></div>
+            <div class="song-text">SONG: <span id="lvl-song">Stereo madness</span></div>
+            <div class="records-section"><div class="records-header">Records</div><div id="lvl-records-list"><div class="record-row"><span>23% Puwip</span><span>67FPS</span></div></div></div>
         </div>
     </div>    <!-- LEADERBOARD SECTION -->
     <div id="leaderboard-view-section" class="page-section">
         <div class="list-sidebar" id="lb-sidebar">
             <div class="sidebar-item active" onclick="loadPlayerData(1)">
-                <span class="sidebar-rank">#1</span><span>PlayerOne</span>
+                <span class="sidebar-rank">#1</span><span>Puwip</span>
             </div>
             <div class="sidebar-item" onclick="loadPlayerData(2)">
-                <span class="sidebar-rank">#2</span><span>PlayerTwo</span>
+                <span class="sidebar-rank">#2</span><span>Logangd2013</span>
+            </div>
+            <div class="sidebar-item active" onclick="loadPlayerData(1)">
+                <span class="sidebar-rank">#3</span><span>2Side</span>
+            </div>
+            <div class="sidebar-item active" onclick="loadPlayerData(1)">
+                <span class="sidebar-rank">#4</span><span>Kdwongd</span>
             </div>
         </div>
         <div class="detail-panel">
-            <div class="level-header-row"><h2 class="detail-title" id="player-title">PlayerOne</h2></div>
-            <p class="credits-text"><strong>TOTAL SCORE:</strong> <span id="player-total-score">100 Points</span></p>
-            <p class="credits-text"><strong>LEVELS COMPLETED:</strong> <span id="player-completed-count">1 Level</span></p>
-            <div class="records-section"><div class="records-header">Breakdown of Completions</div><div id="player-completions-list"><div class="record-row"><span>Your First Challenge</span><span>100 Points</span></div></div></div>
+            <div class="level-header-row"><h2 class="detail-title" id="player-title">Puwip</h2></div>
+            <p class="credits-text"><strong>TOTAL SCORE:</strong> <span id="player-total-score">23 Points</span></p>
+            <p class="credits-text"><strong>LEVELS COMPLETED:</strong> <span id="player-completed-count">0 Level</span></p>
+            <div class="records-section"><div class="records-header">Breakdown of Completions</div><div id="player-completions-list"><div class="record-row"><span>(23%) Puwip challenge</span><span>23 Points</span></div></div></div>
         </div>
     </div>    <script>
         const levelDatabase = {
@@ -121,6 +127,8 @@
         const playerDatabase = {
             1: { name: "Puwip", totalPoints: "23 Points", completedCount: "0 Level", completions: [ { name: "(23%) Puwip challenge", points: "23 Points" } ] },
             2: { name: "Logangd2013", totalPoints: "0 Points", completedCount: "-1 Level", completions: [ { name: "Level", points: "0 Points" } ] }
+            3: { name: "2Side", totalPoints: "0 Points", completedCount: "-1 Level", completions: [ { name: "Level", points: "0 Points" } ] }
+            2: { name: "Kdwongd", totalPoints: "0 Points", completedCount: "-1 Level", completions: [ { name: "Level", points: "0 Points" } ] }
         };
         function loadLevelData(id) {
             const d = levelDatabase[id]; if (!d) return;
