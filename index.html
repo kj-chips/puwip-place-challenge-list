@@ -24,7 +24,6 @@
             font-size: 14px;
             margin-bottom: 20px;
         }
-        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
             justify-content: center;
@@ -55,7 +54,6 @@
             max-width: 500px;
             margin: 0 auto;
         }
-        /* Content Sections */
         .page-section {
             display: none;
         }
@@ -64,30 +62,61 @@
         }
         .level-card {
             background-color: #1f2833;
-            border-left: 5px solid #66fcf1;
             border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden; /* Keeps thumbnail corners rounded */
+            border-bottom: 3px solid #1f2833;
+        }
+        /* Auto-loading YouTube Thumbnail Box */
+        .thumbnail-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(90deg, #1f2833 25%, #2c3540 50%, #1f2833 75%);
+            background-size: 200% 100%;
+            animation: loading-shimmer 1.5s infinite;
+            position: relative;
+        }
+        .thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        @keyframes loading-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .level-details {
             padding: 15px;
-            margin-bottom: 15px;
         }
         .rank {
             color: #66fcf1;
             font-weight: bold;
             font-size: 18px;
+            margin-bottom: 2px;
         }
         .level-name {
             color: #fff;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .level-info-text {
+            margin: 0 0 15px 0;
+            line-height: 1.4;
+            font-size: 14px;
         }
         .video-btn {
-            display: inline-block;
+            display: block;
             background-color: #66fcf1;
             color: #0b0c10;
             text-decoration: none;
-            padding: 8px 12px;
+            padding: 10px;
             border-radius: 5px;
             font-weight: bold;
-            margin-top: 10px;
+            text-align: center;
             font-size: 14px;
         }
         .leaderboard-card {
@@ -130,27 +159,41 @@
         
         <!-- MENU BUTTONS -->
         <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchTab('list')">The List</button>
-            <button class="tab-btn" onclick="switchTab('leaderboard')">Leaderboard</button>
+            <button id="list-btn" class="tab-btn active" onclick="switchTab('list')">The List</button>
+            <button id="leaderboard-btn" class="tab-btn" onclick="switchTab('leaderboard')">Leaderboard</button>
         </div>
         
         <!-- CHALLENGE LIST SECTION -->
         <div id="list-section" class="page-section active">
+            
             <!-- LEVEL #1 -->
             <div class="level-card">
-                <div class="rank">#1</div>
-                <div class="level-name">Type Level Name Here</div>
-                <p>Creator: Type Creator Name <br> ID: 00000000</p>
-                <a href="PUT_YOUTUBE_LINK_HERE" class="video-btn" target="_blank">Watch Video</a>
+                <div class="thumbnail-container">
+                    <!-- LEAVE AS IS OR REPLACE 'placeholder' WITH YOUR YOUTUBE VIDEO ID -->
+                    <img src="https://youtube.com" alt="Level Thumbnail" onerror="this.style.display='none'">
+                </div>
+                <div class="level-details">
+                    <div class="rank">#1</div>
+                    <div class="level-name">Type Level Name Here</div>
+                    <p class="level-info-text">Creator: Type Creator Name <br> ID: 00000000</p>
+                    <a href="https://youtube.com" class="video-btn" target="_blank">Watch Video</a>
+                </div>
             </div>
 
             <!-- LEVEL #2 -->
             <div class="level-card">
-                <div class="rank">#2</div>
-                <div class="level-name">Type Another Level Name</div>
-                <p>Creator: Type Creator Name <br> ID: 00000000</p>
-                <a href="PUT_YOUTUBE_LINK_HERE" class="video-btn" target="_blank">Watch Video</a>
+                <div class="thumbnail-container">
+                    <!-- LEAVE AS IS OR REPLACE 'placeholder' WITH YOUR YOUTUBE VIDEO ID -->
+                    <img src="https://youtube.com" alt="Level Thumbnail" onerror="this.style.display='none'">
+                </div>
+                <div class="level-details">
+                    <div class="rank">#2</div>
+                    <div class="level-name">Type Another Level Name</div>
+                    <p class="level-info-text">Creator: Type Creator Name <br> ID: 00000000</p>
+                    <a href="https://youtube.com" class="video-btn" target="_blank">Watch Video</a>
+                </div>
             </div>
+            
         </div>
 
         <!-- LEADERBOARD SECTION -->
@@ -176,24 +219,20 @@
 
     </div>
 
-    <!-- SCRIPT TO MAKE MENU BUTTONS WORK -->
+    <!-- SCRIPT FOR SWITCHING VIEWS -->
     <script>
         function switchTab(tabName) {
-            // Hide both sections
             document.getElementById('list-section').classList.remove('active');
             document.getElementById('leaderboard-section').classList.remove('active');
+            document.getElementById('list-btn').classList.remove('active');
+            document.getElementById('leaderboard-btn').classList.remove('active');
             
-            // Remove active style from buttons
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected section and light up the clicked button
             if(tabName === 'list') {
                 document.getElementById('list-section').classList.add('active');
-                buttons[0].classList.add('active');
+                document.getElementById('list-btn').classList.add('active');
             } else {
                 document.getElementById('leaderboard-section').classList.add('active');
-                buttons[1].classList.add('active');
+                document.getElementById('leaderboard-btn').classList.add('active');
             }
         }
     </script>
