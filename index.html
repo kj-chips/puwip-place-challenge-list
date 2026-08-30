@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,8 +51,7 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
     </style>
-</head>
-<body>
+</head><body>
     <header>
         <h1>Puwip Place List (PPCL)</h1>
         <div class="theme-container">
@@ -98,9 +97,7 @@
             <div class="song-text">SONG: <span id="lvl-song">Song Name Here</span></div>
             <div class="records-section"><div class="records-header">Records</div><div id="lvl-records-list"><div class="record-row"><span>100% PlayerOne 🇺🇸</span><span>360FPS</span></div></div></div>
         </div>
-    </div>
-
-    <!-- LEADERBOARD SECTION -->
+    </div>    <!-- LEADERBOARD SECTION -->
     <div id="leaderboard-view-section" class="page-section">
         <div class="list-sidebar" id="lb-sidebar">
             <div class="sidebar-item active" onclick="loadPlayerData(1)">
@@ -116,15 +113,48 @@
             <p class="credits-text"><strong>LEVELS COMPLETED:</strong> <span id="player-completed-count">1 Level</span></p>
             <div class="records-section"><div class="records-header">Breakdown of Completions</div><div id="player-completions-list"><div class="record-row"><span>Your First Challenge</span><span>100 Points</span></div></div></div>
         </div>
-    </div>
-
-    <script>
+    </div>    <script>
         const levelDatabase = {
             1: { title: "Your First Challenge", creator: "Creator Name", verifier: "Verifier Name", videoID: "dQw4w9WgXcQ", points: "100", idNum: "00000000", password: "Free to Copy", enjoyment: "10/10", song: "Song Name Here", records: [ {p: "PlayerOne 🇺🇸", f: "360FPS"} ] },
             2: { title: "Your Second Challenge", creator: "Another Creator", verifier: "Another Verifier", videoID: "dQw4w9WgXcQ", points: "50", idNum: "11111111", password: "No Copy", enjoyment: "5/10", song: "Another Song", records: [ {p: "PlayerTwo 🇺🇸", f: "144FPS"} ] }
         };
         const playerDatabase = {
-            1: { name: "PlayerOne", totalPoints: "100 Points", completedCount: "1 Level", completions: [ { name: "Your First Challenge", points: "100 Points" } ] },2: { name: "PlayerTwo", totalPoints: "50 Points", completedCount: "1 Level", completions: [ { name: "Your Second Challenge", points: "50 Points" } ] }};function loadLevelData(id) {const d = levelDatabase[id]; if (!d) return;document.getElementById('lvl-title').innerText = d.title; document.getElementById('lvl-creator').innerText = d.creator; document.getElementById('lvl-verifier').innerText = d.verifier; document.getElementById('lvl-points').innerText = d.points; document.getElementById('lvl-id').innerText = d.idNum; document.getElementById('lvl-pass').innerText = d.password; document.getElementById('lvl-enjoy').innerText = d.enjoyment; document.getElementById('lvl-song').innerText = d.song; document.getElementById('lvl-video').src = "youtube.com" + d.videoID;let h = ""; d.records.forEach(r => { h += <div class="record-row"><span>100% ${r.p}</span><span>${r.f}</span></div>; }); document.getElementById('lvl-records-list').innerHTML = h;document.querySelectorAll('#list-view-section .sidebar-item').forEach((item, idx) => { item.classList.toggle('active', (idx + 1) === id); });}function loadPlayerData(id) {const d = playerDatabase[id]; if (!d) return;document.getElementById('player-title').innerText = d.name; document.getElementById('player-total-score').innerText = d.totalPoints; document.getElementById('player-completed-count').innerText = d.completedCount;let h = ""; d.completions.forEach(c => { h += <div class="record-row"><span>${c.name}</span><span>${c.points}</span></div>; }); document.getElementById('player-completions-list').innerHTML = h;document.querySelectorAll('#lb-sidebar .sidebar-item').forEach((item, idx) => { item.classList.toggle('active', (idx + 1) === id); });}function copyLevelTitle() {const t = document.getElementById('lvl-title').innerText;if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t).then(() => alert("Copied level name: " + t)).catch(() => fallbackCopy(t)); } else { fallbackCopy(t); }}function fallbackCopy(t) {const e = document.createElement("textarea"); e.value = t; e.style.position = "fixed"; document.body.appendChild(e); e.focus(); e.select();try { document.execCommand('copy'); alert("Copied: " + t); } catch (err) { alert("Failed to copy."); } document.body.removeChild(e);}function toggleThemePopover(e) { e.stopPropagation(); document.getElementById('themeMenu').classList.toggle('open'); }function applyThemeColor(c, id) {document.documentElement.style.setProperty('--accent-color', c); document.querySelector('.theme-toggle-btn').style.backgroundColor = c;document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active');}function toggleMainView(v) {document.getElementById('list-view-section').classList.toggle('active', v === 'list'); document.getElementById('leaderboard-view-section').classList.toggle('active', v === 'leaderboard');document.getElementById('main-list-tab').classList.toggle('active', v === 'list'); document.getElementById('main-lb-tab').classList.toggle('active', v === 'leaderboard');}window.addEventListener('click', () => document.getElementById('themeMenu').classList.remove('open'));
-   
-        
-        
+            1: { name: "PlayerOne", totalPoints: "100 Points", completedCount: "1 Level", completions: [ { name: "Your First Challenge", points: "100 Points" } ] },
+            2: { name: "PlayerTwo", totalPoints: "50 Points", completedCount: "1 Level", completions: [ { name: "Your Second Challenge", points: "50 Points" } ] }
+        };
+        function loadLevelData(id) {
+            const d = levelDatabase[id]; if (!d) return;
+            document.getElementById('lvl-title').innerText = d.title; document.getElementById('lvl-creator').innerText = d.creator; document.getElementById('lvl-verifier').innerText = d.verifier; document.getElementById('lvl-points').innerText = d.points; document.getElementById('lvl-id').innerText = d.idNum; document.getElementById('lvl-pass').innerText = d.password; document.getElementById('lvl-enjoy').innerText = d.enjoyment; document.getElementById('lvl-song').innerText = d.song; document.getElementById('lvl-video').src = "https://youtube.com" + d.videoID;
+            let h = ""; d.records.forEach(r => { h += `<div class="record-row"><span>100% ${r.p}</span><span>${r.f}</span></div>`; }); document.getElementById('lvl-records-list').innerHTML = h;
+            document.querySelectorAll('#list-view-section .sidebar-item').forEach((item, idx) => { item.classList.toggle('active', (idx + 1) === id); });
+        }
+        function loadPlayerData(id) {
+            const d = playerDatabase[id]; if (!d) return;
+            document.getElementById('player-title').innerText = d.name; document.getElementById('player-total-score').innerText = d.totalPoints; document.getElementById('player-completed-count').innerText = d.completedCount;
+            let h = ""; d.completions.forEach(c => { h += `<div class="record-row"><span>${c.name}</span><span>${c.points}</span></div>`; }); document.getElementById('player-completions-list').innerHTML = h;
+            document.querySelectorAll('#lb-sidebar .sidebar-item').forEach((item, idx) => { item.classList.toggle('active', (idx + 1) === id); });
+        }
+        function copyLevelTitle() {
+            const t = document.getElementById('lvl-title').innerText;
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t).then(() => alert("Copied level name: " + t)).catch(() => fallbackCopy(t)); } else { fallbackCopy(t); }
+        }
+        function fallbackCopy(t) {
+            const e = document.createElement("textarea"); e.value = t; e.style.position = "fixed"; document.body.appendChild(e); e.focus(); e.select();
+            try { document.execCommand('copy'); alert("Copied: " + t); } catch (err) { alert("Failed to copy."); } document.body.removeChild(e);
+        }
+        function toggleThemePopover(e) { e.stopPropagation(); document.getElementById('themeMenu').classList.toggle('open'); }
+        function applyThemeColor(c, id) {
+            document.documentElement.style.setProperty('--accent-color', c); document.querySelector('.theme-toggle-btn').style.backgroundColor = c;
+            document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active');
+        }
+        function toggleMainView(v) {
+            document.getElementById('list-view-section').classList.toggle('active', v === 'list'); document.getElementById('leaderboard-view-section').classList.toggle('active', v === 'leaderboard');
+            document.getElementById('main-list-tab').classList.toggle('active', v === 'list'); document.getElementById('main-lb-tab').classList.toggle('active', v === 'leaderboard');
+        }
+        window.addEventListener('click', () => document.getElementById('themeMenu').classList.remove('open'));
+    </script>
+</body>
+</html>
+
+
+
